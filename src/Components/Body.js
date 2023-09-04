@@ -1,10 +1,12 @@
 import Card from 'react-bootstrap/Card';
+import Career from './Career';
 function Body({address,name}) {  // destruction
     return (
       <>
         <Card >
             <Card.Title>This Page is Build by {name} who is from {address}</Card.Title>
             <Card.Text>
+              <Career />
               <br/>
               This is a wider card with supporting text below as a natural lead-in
               to additional content. This content is a little bit longer.
