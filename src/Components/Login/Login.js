@@ -1,37 +1,61 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 function Login() {
+    /*
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+*/
+const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+  let loginUser = {
+    'email' : "mdfiroz@gmail.com",
+    'password' : "12345"
+
+  }
+  const [formName, setFormName] = useState("Login Form")
+  const onSubmit = (e)=>{
+    e.preventDefault()
+    console.log(formData)
+    if(formData.email === loginUser.email && formData.password === loginUser.password){
+        alert(" Login Success");
+    }
+    else{
+        alert(" Login Error");
+    }
+    
+
+  }
+ 
+  const onChange = (e) => {
+        setFormData(prev => {
+            const cloneState = {...prev};
+            cloneState[e.target.name] = e.target.value;
+            return cloneState;
+        });
+    }
     return (
       <>
             <Container>
-                <Row>
-                    <Col > 
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
-                            <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group>
+                <Row className="justify-content-md-center">
+                    <Col xs lg="3" > 
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Check me out" />
-                        </Form.Group>
-                        <div className="d-grid gap-2">
-                            <Button variant="primary" type="submit" size="lg">
-                                Submit
-                            </Button>
-                        </div>
-                        </Form>
+                    <form onSubmit={onSubmit}>
+                        <h1> {formName} </h1>
+                        <label htmlFor="title">Email</label>
+                        <input type="text" name="email" id="email" onChange={onChange}
+                        />
+                        <br/><br/>
+
+                        <label htmlFor="body">Password</label>
+                        <input type="password" name="password" id="password"  onChange={onChange}/><br/><br/>
+
+                        <input type="submit" value="Submit" />
+                    </form>
                      </Col>
                    
                 </Row>
