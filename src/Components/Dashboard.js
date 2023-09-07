@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import React, { useState } from 'react';
 import Breadcom from './Breadcom';
-
+import RightBar from './RightBar';
 // hook 
 //props properties parent to child
 let name = "MD Firoz";
@@ -39,7 +39,7 @@ function Dashboard() {
                         </div>
                     </Col>
                     <Col sm={2}>
-                       my rightbar
+                       <RightBar/>
                     </Col>
                 </Row>
             </Container>

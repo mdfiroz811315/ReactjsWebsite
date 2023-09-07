@@ -6,16 +6,20 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
+
+
 function Register() {
-const [formData, setFormData] = useState({
+const [registrationData, setRegistrationData] = useState({
     "firstName": '',
     "lastName": '',
     "emailid": '',
     "password": '',
-    "sex" : '',
+    "gender" : '',
     "mobile": '',
     "fullAdress": '',
-    "dob" : ''
+    "dob" : '',
+    "city" : '',
+    "image" : ''
   })
   const [errorMessages, setErrorMessages] = useState({});
   /////////////////////////////////////////
@@ -33,15 +37,15 @@ const [formData, setFormData] = useState({
   const [formName, setFormName] = useState("Registration Form")
   const onSubmit = (e)=>{
     e.preventDefault()
-    console.log(formData)
+    console.log(registrationData)
    
 
   }
- 
+ /////////////////////////////////////////////
   const onChange = (e) => {
-        setFormData(prev => {
+        setRegistrationData(prev => {
             const cloneState = {...prev};
-            cloneState[e.target.name] = e.target.value;
+            cloneState[e.target.name] = e.target.value;  // updating state valus from Form
             return cloneState;
         });
     }
@@ -69,16 +73,29 @@ const [formData, setFormData] = useState({
 
                         <Form.Group className="mb-3" controlId="lastName">
                             <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter Last Name" />
+                            <Form.Control type="text"  name="lastName"  placeholder="Enter Last Name"   onChange={onChange}/>
                             <Form.Text >
                                 {renderErrorMessage("lastName")}
                             </Form.Text>
                         </Form.Group>
-
+                        <Form.Group className="mb-3" controlId="city">
+                            <Form.Label>SELECT YOUR CITY</Form.Label>
+                            <Form.Select aria-label="Select City" name="city" onChange={onChange} onSelect={onChange}> 
+                                <option>SELECT CITY</option>
+                                <option value="KOLKATA">KOLKATA</option>
+                                <option value="DELHI">NEW DELHI</option>
+                                <option value="MUMBAI">MUMBAI</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group controlId="image" name="image" className="mb-3">
+                            <Form.Label>Upload Image</Form.Label>
+                            <Form.Control type="file" multiple  name="image" onChange={onChange} />
+                        </Form.Group>
+                   
 
                         <Form.Group className="mb-3" controlId="emailid">
                             <Form.Label>Email id</Form.Label>
-                            <Form.Control type="text" placeholder=" Enter Email id" />
+                            <Form.Control type="text" placeholder=" Enter Email id"  name="emailid" onChange={onChange} />
                             <Form.Text >
                                 {renderErrorMessage("emailid")}
                             </Form.Text>
@@ -86,23 +103,38 @@ const [formData, setFormData] = useState({
 
                         <Form.Group className="mb-3" controlId="password">
                             <Form.Label>password</Form.Label>
-                            <Form.Control type="text" placeholder=" ##### #####" />
+                            <Form.Control type="password" placeholder=" ***** *****" name="password" onChange={onChange} />
                             <Form.Text >
                                 {renderErrorMessage("password")}
                             </Form.Text>
                         </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="sex">
-                            <Form.Label>Sex</Form.Label>
-                            <Form.Control type="box" placeholder=" Type Sex" />
+                        <Form.Group className="mb-3" controlId="password">
+                            <Form.Label>Gender</Form.Label>
                             <Form.Text >
-                                {renderErrorMessage("sex")}
+                                <Form.Check // prettier-ignore
+                                    type='radio'
+                                    id="male"
+                                    label="Male"
+                                    name="gender"
+                                    value="Male"
+                                    onChange={onChange}
+                                />
+                                <Form.Check // prettier-ignore
+                                    type='radio'
+                                    id="Female"
+                                    label="Female"
+                                    name="gender"
+                                    value="Female"
+                                    onChange={onChange}
+                                />
+
                             </Form.Text>
                         </Form.Group>
 
+                       
                         <Form.Group className="mb-3" controlId="mobile">
                             <Form.Label>mobile</Form.Label>
-                            <Form.Control type="mobile" placeholder=" Type Number" />
+                            <Form.Control type="number" placeholder=" Type Number" name="mobile" onChange={onChange}/>
                             <Form.Text >
                                 {renderErrorMessage("mobile")}
                             </Form.Text>
@@ -110,7 +142,11 @@ const [formData, setFormData] = useState({
 
                         <Form.Group className="mb-3" controlId="fullAdress">
                             <Form.Label>Full Adress</Form.Label>
-                            <Form.Control type="fullAdress" placeholder=" Type Adress" />
+                            <Form.Control name="fullAdress" onChange={onChange}
+                            as="textarea"
+                            placeholder="Enter Your Address here"
+                            style={{ height: '100px' }}
+                            />
                             <Form.Text >
                                 {renderErrorMessage("fullAdress")}
                             </Form.Text>
@@ -118,7 +154,7 @@ const [formData, setFormData] = useState({
 
                         <Form.Group className="mb-3" controlId="dob">
                             <Form.Label>Date Of Birth</Form.Label>
-                            <Form.Control type="dob" placeholder=" Type DOB" />
+                            <Form.Control type="date" placeholder=" Type DOB" name="dob" onChange={onChange}/>
                             <Form.Text >
                                 {renderErrorMessage("dob")}
                             </Form.Text>

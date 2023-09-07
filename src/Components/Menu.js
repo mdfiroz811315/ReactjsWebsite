@@ -32,7 +32,10 @@ function Menu() {
                             <Link className="nav-link" to="/Login">Login</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/Register">Register</Link>
+                            <Link className="nav-link" to="/Register">React-Bootstrap Register</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/registration">Custom Html Register</Link>
                         </li>
                     </ul>
                     <form className="d-flex" role="search">

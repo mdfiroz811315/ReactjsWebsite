@@ -10,6 +10,7 @@ import Menu from './Components/Menu';
 import Career from './Components/Career';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
+import Registration from './Components/Register/Registration';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './App';
 import  '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -29,6 +30,7 @@ function AppRoot() {
           <Route path="Career" element={<Career />} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
+          <Route path="registration" element={<Registration />} />
         </Route>
       </Routes>
     </BrowserRouter>
