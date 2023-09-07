@@ -13,7 +13,8 @@ export default  function Registration() {
         "fullAdress": '',
         "dob" : '',
         "city" : '',
-        "image" : ''
+        "image" : '',
+        "skill" : ''
       })
       const [errorMessages, setErrorMessages] = useState({});
       /////////////////////////////////////////
@@ -66,6 +67,7 @@ export default  function Registration() {
                 <input type="text" placeholder="Enter Last Name " name="lastName"  onChange={onChange} required />
                 <div> {renderErrorMessage("lastName")}</div>
 
+
                 <label htmlFor="city"><b>SELECT YOUR CITY</b></label>
                 <select name="city" onChange={onChange} onSelect={onChange} >
                     <option>SELECT CITY</option>
@@ -75,10 +77,12 @@ export default  function Registration() {
                 </select>
                 <div> {renderErrorMessage("city")}</div>
 
+
                 <hr/>
                 <label htmlFor="image"><b>Upload Image</b></label>
                 <input type="file" id="myFile" name="image" onChange={onChange} />
                 <div> {renderErrorMessage("image")}</div>
+
 
                 <hr/>
                 <label htmlFor="emailid"><b>Email id</b></label>
@@ -86,26 +90,49 @@ export default  function Registration() {
                 <div> {renderErrorMessage("emailid")}</div>
 
 
+
                 <label htmlFor="password"><b>Password</b></label>
                 <input type="password" placeholder="password " name="password"  onChange={onChange} required />
                 <div> {renderErrorMessage("password")}</div>
                 <hr/>
-                <label htmlFor="gender"><b>Gender   </b></label> <hr/>
+
+
+                <label htmlFor="gender"><b>Gender   </b></label> <br/>
                Male <input type="radio" placeholder="Male " name="gender" value="Male" onChange={onChange} required />
                 Female <input type="radio" placeholder="Female " name="gender"  value="FeMale" onChange={onChange} required />
                 <div> {renderErrorMessage("gender")}</div>
                 <hr/>
+
+
                 <label htmlFor="mobile"><b>mobile</b></label>
                 <input type="number" placeholder="Enter number " name="mobile"  onChange={onChange} required />
                 <div> {renderErrorMessage("mobile")}</div>
                 <hr/>
-                <label htmlFor="fullAdress"><b>FullAdress</b></label>
-                <textarea rows="4" cols="50" name="fullAdress"  onChange={onChange} required /> 
+
+
+                <label htmlFor="fullAdress"><b>FullAdress</b></label><br/>
+                <textarea rows="5" cols="160" name="fullAdress"  onChange={onChange} required /> 
                 <div> {renderErrorMessage("fullAdress")}</div>
                 <hr/>
+
+
                 <label htmlFor="dob"><b>Date Of Birth</b></label>
                 <input type="date" placeholder="select dob " name="dob"  onChange={onChange} required />
                 <div> {renderErrorMessage("dob")}</div>
+
+                <hr/>
+                <label htmlFor="skill"><b>Skills</b> <br/></label> <br/>
+                <input type="checkbox"  name="skill" value="Html" />
+                    <label >  HTML</label><br/>
+                    <input type="checkbox" name="skill" value="CSS" />
+                    <label >  CSS</label><br/>
+                    <input type="checkbox" name="skill" value="Javscript" />
+                    <label >  Javscript</label> <br/>
+                    <input type="checkbox" name="skill" value="Reactjs" />
+                    <label>   REactJs</label>
+                    <br/>
+                <div> {renderErrorMessage("skill")}</div>
+
 
                 <hr/>
                 <button type="submit" className="registerbtn">Register</button>
