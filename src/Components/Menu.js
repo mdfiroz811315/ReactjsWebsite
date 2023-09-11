@@ -20,6 +20,9 @@ function Menu() {
                             <Link className="nav-link" to="/career">Career</Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" to="/Careercostem">Form</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" to="/Footer">Footer</Link>
                         </li>
                         <li className="nav-item">
@@ -30,6 +33,9 @@ function Menu() {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/Login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/CustemLogin">LoginCostem</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/Register">React-Bootstrap Register</Link>

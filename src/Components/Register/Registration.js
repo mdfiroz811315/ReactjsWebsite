@@ -18,18 +18,8 @@ export default  function Registration() {
       })
       const [errorMessages, setErrorMessages] = useState({});
       /////////////////////////////////////////
-      const errors = {
-        firstName : "Please Enter First Name",
-        lastName : "Please Enter Last Name",
-        emailid : "Please Enter Emailid",
-        password  : "Please Enter Password",
-        sex : "Please Enter Sex",     
-        mobile : "Please Enter Mobile",
-        fullAdress : "Please Enter FullAdress",
-        dob : "Please Enter DOB"
-      };
+     
     //////////////////////////////////
-      const [formName, setFormName] = useState("Registration Form")
       const onSubmit = (e)=>{
         e.preventDefault()
         console.log(registrationData)
@@ -60,7 +50,7 @@ export default  function Registration() {
             <p>Please fill in this form to create an account.</p>
             <hr/>
                 <label htmlFor="firstName"><b>First Name</b></label>
-                <input type="text" placeholder="Enter First Name " name="firstName"  onChange={onChange} required/>
+                <input type="text" placeholder="Enter First Name " name="firstName"  onChange={onChange} required />
                 <div> {renderErrorMessage("firstName")}</div>
 
                 <label htmlFor="lastName"><b>Last Name</b></label>
@@ -79,7 +69,7 @@ export default  function Registration() {
 
 
                 <hr/>
-                <label htmlFor="image"><b>Upload Image</b></label>
+                <label htmlFor="image"><b>Upload Image</b></label><br/>
                 <input type="file" id="myFile" name="image" onChange={onChange} />
                 <div> {renderErrorMessage("image")}</div>
 

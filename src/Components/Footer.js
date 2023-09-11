@@ -1,15 +1,28 @@
-function Footer() {
+import { Container } from "react-bootstrap"
+
+export default function Footer() {
+  ////////////////
+
+  const loginUser = (e)=>{
+    e.preventDefault()
+  }
+
+
+  ///////////////////
   return (
       <>
-          <ul className="nav">
-              <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">Active</a>
-              </li>
-          </ul>
-            
-            <button type="button" className="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
-            <div id="demo" className="collapse"></div>
+      <Container>
+          <form  onSubmit={loginUser}>
+            <h1>footer form Example </h1>
+
+
+          add your fields here
+
+
+          <button type="submit" className="registerbtn">Submit</button>
+          </form>
+        </Container>
       </>
   )
 }
-export default  Footer
+ 

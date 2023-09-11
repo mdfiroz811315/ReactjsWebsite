@@ -1,0 +1,75 @@
+<!--  create one form
+//    js se form mai value aana chahia
+//    html text mai default koi value hona chhia
+//    button click koi value alert karna chahia
+//    dusra button on click button koi function call hona chahia
+//    jaise add hona chahia aur kahi result display hona chahia html mai -->
+
+
+
+
+<html>
+<head>
+</head>
+<body>
+    create one form
+    <form>
+
+        <label htmlfor="fname">First name:</label><br>
+        <input type="text" name="fname" id="fname"><br>
+        <label htmlfor="lname">Last name:</label><br>
+        <input type="text" name="lname">
+        <br>
+        <label htmlfor="dval">Dafault Value:</label><br>
+        html text mai default koi value hona chhia
+        <input type="text" name="dval" value="This is My Default Value">
+      </form>
+      button click koi value alert karna chahia
+      <button type="button" onclick= clickMe()>Submit</button>
+
+      <br><br><br><br><br>
+
+      dusra button on click button koi function call hona chahia
+//    jaise add hona chahia aur kahi result display hona chahia html mai 
+
+      <label htmlfor="fNum">First Number:</label><br>
+        <input type="number" name="fNum" id="fNum"><br>
+        <label htmlfor="lNum">Second Number:</label><br>
+        <input type="number" name="lNum" id="lNum">
+        <br>
+        <button type="button" onclick= Add()>Add</button>
+
+        <p>Result</p>
+        <p id="result"></p>
+
+</body>
+</html>
+<script>
+
+   //dusra button on click button koi function call hona chahia
+//    jaise add hona chahia aur kahi result display hona chahia html mai 
+    function Add(){
+        let istNum = document.getElementById("fNum").value;
+        let secondNum = document.getElementById("lNum").value;
+
+        let sum = parseInt(istNum) + parseInt(secondNum);
+        // kahi result display hona chahia html mai 
+        document.getElementById("result").innerHTML = sum;
+
+    }
+    //button click koi value alert karna chahia
+    function clickMe(){
+        alert("Hi");
+    }
+    /*
+     function clickMe(){
+
+    }
+    const clickMe = ()=>{
+
+    }
+    */
+   // js se form mai value aana chahia
+    document.getElementById("fname").value = "MD";
+    document.getElementsByName("lname")[0].value = "Firoz"
+</script>
