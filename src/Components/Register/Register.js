@@ -21,39 +21,89 @@ const [registrationData, setRegistrationData] = useState({
     "city" : '',
     "image" : ''
   })
-  const [errorMessages, setErrorMessages] = useState({});
-  /////////////////////////////////////////
+  // declaring state to validate fields
+  const [errorMessages, setErrorMessages] = useState({
+    "firstName": '',
+    "emailid": '',
+    "password": '',
+    "gender" : '',
+    "mobile": '',
+    "dob" : ''
+  });
+
+  // error message to display if field is blank
   const errors = {
     firstName : "Please Enter First Name",
-    lastName : "Please Enter Last Name",
     emailid : "Please Enter Emailid",
     password  : "Please Enter Password",
-    sex : "Please Enter Sex",     
+    gender : "Please Enter Sex",     
     mobile : "Please Enter Mobile",
-    fullAdress : "Please Enter FullAdress",
     dob : "Please Enter DOB"
   };
 //////////////////////////////////
   const [formName, setFormName] = useState("Registration Form")
+
+
   const onSubmit = (e)=>{
     e.preventDefault()
     console.log(registrationData)
-   
+
+    let errorCopy = {...errorMessages};
+    if(registrationData.firstName === ''){
+        errorCopy.firstName = errors.firstName
+    }
+    if(registrationData.emailid === ''){
+        errorCopy.emailid = errors.emailid
+    }
+    if(registrationData.password === ''){
+        errorCopy.password = errors.password
+    }
+    if(registrationData.gender === ''){
+        errorCopy.gender = errors.gender
+
+    }
+    if(registrationData.mobile === ''){
+        errorCopy.mobile = errors.mobile
+    }
+    if(registrationData.dob === ''){
+        errorCopy.dob = errors.dob
+    }
+    setErrorMessages(errorCopy);
 
   }
  /////////////////////////////////////////////
   const onChange = (e) => {
+        let name = e.target.name;
+        let val = e.target.value;
+        console.log(errorMessages);
+        let cloneError = {...errorMessages};
+        // we will do validation for the text which we added for validation
+        if(cloneError.hasOwnProperty(name)){
+            if(val  === ''){
+                let errorMsg = errors[name];
+
+                cloneError[name] = errorMsg
+
+                setErrorMessages(cloneError)
+            }else{
+                let errorMsg = "";
+                cloneError[name] = errorMsg
+
+                setErrorMessages(cloneError)
+            }
+
+        }
+
         setRegistrationData(prev => {
             const cloneState = {...prev};
-            cloneState[e.target.name] = e.target.value;  // updating state valus from Form
+            if(cloneState.hasOwnProperty(e.target.name))
+            {
+                cloneState[e.target.name] = e.target.value;  // updating state valus from Form
+            }
             return cloneState;
         });
     }
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-      name === errorMessages.name && (
-        <div className="error">{errorMessages.message}</div>
-      );
+
     return (
       <>
             <Container>
@@ -64,19 +114,17 @@ const [registrationData, setRegistrationData] = useState({
                     <Form onSubmit={onSubmit}>
                          <h1> {formName} </h1>
                         <Form.Group className="mb-3" controlId="firstName">
-                            <Form.Label>First Name</Form.Label>
+                            <Form.Label>First Name <span className="text-danger"> * </span></Form.Label>
                             <Form.Control type="text" name="firstName" placeholder="Enter First Name"  onChange={onChange}/>
-                            <Form.Text >
-                                {renderErrorMessage("firstName")}
+                            <Form.Text className="text-danger">
+                                {errorMessages["firstName"]}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="lastName">
                             <Form.Label>Last Name</Form.Label>
                             <Form.Control type="text"  name="lastName"  placeholder="Enter Last Name"   onChange={onChange}/>
-                            <Form.Text >
-                                {renderErrorMessage("lastName")}
-                            </Form.Text>
+                           
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="city">
                             <Form.Label>SELECT YOUR CITY</Form.Label>
@@ -94,22 +142,22 @@ const [registrationData, setRegistrationData] = useState({
                    
 
                         <Form.Group className="mb-3" controlId="emailid">
-                            <Form.Label>Email id</Form.Label>
+                            <Form.Label>Email id <span className="text-danger"> * </span></Form.Label>
                             <Form.Control type="text" placeholder=" Enter Email id"  name="emailid" onChange={onChange} />
-                            <Form.Text >
-                                {renderErrorMessage("emailid")}
+                            <Form.Text className="text-danger">
+                                {errorMessages.emailid}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="password">
-                            <Form.Label>password</Form.Label>
+                            <Form.Label>password <span className="text-danger"> * </span></Form.Label>
                             <Form.Control type="password" placeholder=" ***** *****" name="password" onChange={onChange} />
-                            <Form.Text >
-                                {renderErrorMessage("password")}
+                            <Form.Text className="text-danger">
+                                {errorMessages.password}
                             </Form.Text>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="password">
-                            <Form.Label>Gender</Form.Label>
+                            <Form.Label>Gender <span className="text-danger"> * </span></Form.Label>
                             <Form.Text >
                                 <Form.Check // prettier-ignore
                                     type='radio'
@@ -129,14 +177,17 @@ const [registrationData, setRegistrationData] = useState({
                                 />
 
                             </Form.Text>
+                            <Form.Text className="text-danger">
+                                {errorMessages.gender}
+                            </Form.Text>
                         </Form.Group>
 
                        
                         <Form.Group className="mb-3" controlId="mobile">
-                            <Form.Label>mobile</Form.Label>
+                            <Form.Label>mobile <span className="text-danger"> * </span></Form.Label>
                             <Form.Control type="number" placeholder=" Type Number" name="mobile" onChange={onChange}/>
-                            <Form.Text >
-                                {renderErrorMessage("mobile")}
+                            <Form.Text className="text-danger">
+                                {errorMessages.mobile}
                             </Form.Text>
                         </Form.Group>
 
@@ -148,7 +199,7 @@ const [registrationData, setRegistrationData] = useState({
                             style={{ height: '100px' }}
                             />
                             <Form.Text >
-                                {renderErrorMessage("fullAdress")}
+                              
                             </Form.Text>
                         </Form.Group>
 
@@ -156,7 +207,7 @@ const [registrationData, setRegistrationData] = useState({
                             <Form.Label>Date Of Birth</Form.Label>
                             <Form.Control type="date" placeholder=" Type DOB" name="dob" onChange={onChange}/>
                             <Form.Text >
-                                {renderErrorMessage("dob")}
+                              
                             </Form.Text>
                         </Form.Group>
 

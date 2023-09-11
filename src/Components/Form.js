@@ -27,12 +27,39 @@ function Form (){
         "city" : ''
       })
 
+      const [firstNameError,setFirstNameError] = useState();
+      const [mobileError,setmobileError] = useState();
+
+      let errorMessage = {
+        "firstNameErrorMsg" : "Please Enter First Name",
+        "mobileError"       : "Please Enter Your Mobile Number"
+      }
+    //  const 
+
     //function to update react state value(registrationData) onChenge event 
     const changeText =(e)=>{ // "e" is the event which contain DOM property(name,value,type) from where it fired
         // to picup current value from where this funtion fire
         let currentValue = e.target.value;
         // to picup text name from where this function fire
         let formName = e.target.name;
+        // update error message
+        console.log("mobile num",currentValue)
+        if(currentValue !== ''){
+            if(formName === 'firstName'){
+                setFirstNameError("");
+            }
+            if(formName === 'mobile'){
+                setmobileError("");
+            }
+        }
+        if(currentValue === ''){
+            if(formName === 'firstName'){
+                setFirstNameError(errorMessage.firstNameErrorMsg);
+            }
+            if(formName === 'mobile'){
+                setmobileError(errorMessage.mobileError);
+            }
+        }
         // to updte state value(registrationData)
         setRegistrationData(
              cur  => {  // a way to pick current value
@@ -70,8 +97,20 @@ function Form (){
     const registerUser = (e)=>{
         // to stop page reload on submit
         e.preventDefault();
-        alert(registrationData.firstName);
-        alert(registrationData["lastName"]);
+        /*
+
+        validation
+
+        */
+       if(registrationData.firstName === ''){
+        setFirstNameError(errorMessage.firstNameErrorMsg);
+       // return
+       }
+       if(registrationData.mobile === ''){
+        setmobileError(errorMessage.mobileError);
+    //    return
+       }
+
     }
 
     return(
@@ -79,10 +118,12 @@ function Form (){
             <Container>
                 <form onSubmit={registerUser}>
                     <h1>Registration Form</h1>
+
                     <Row>
                     <Col>
-                        <label htmlFor="firstName"><b>First Name</b></label>
+                        <label htmlFor="firstName"><b>First Name </b></label><span className="text-danger"> * </span>
                         <input type="text" placeholder="Enter First Name " name="firstName" onChange={changeText} />
+                        <span className="text-danger"> {firstNameError} </span>
                     </Col>
                     <Col>
                         <label htmlFor="lastName"><b>Last Name</b></label>
@@ -91,8 +132,9 @@ function Form (){
                     </Row>
                     <Row>
                     <Col >
-                        <label htmlFor="mobile"><b>mobile</b></label>
+                        <label htmlFor="mobile"><b>mobile </b></label><span className="text-danger"> * </span>
                         <input type="number" placeholder="Enter phone number " name="mobile" onChange={changeText} />
+                        <div className="text-danger"> {mobileError} </div>
                     </Col>
                     <Col>
                         <label htmlFor="city"><b>SELECT CITY</b></label>
